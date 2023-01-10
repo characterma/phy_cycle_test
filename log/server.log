@@ -1,0 +1,8 @@
+2022-12-15 11:54:35,672 - d:/Gitlab/phy_cycle_test/server.py[line:1724] - INFO: Server Started
+2022-12-15 11:58:52,456 - d:/Gitlab/phy_cycle_test/server.py[line:1397] - INFO: PhyAllResults nF6TrofI,2022-12-05
+2022-12-15 11:58:52,595 - d:/Gitlab/phy_cycle_test/server.py[line:1444] - INFO: PhySiologicalCycleStage error
+2022-12-15 11:58:52,596 - d:/Gitlab/phy_cycle_test/server.py[line:1445] - ERROR: a_pregnant_config is None
+Traceback (most recent call last):
+  File "d:/Gitlab/phy_cycle_test/server.py", line 1413, in PhySiologicalCycleStage
+    raise Exception("a_pregnant_config is None")
+Exception: a_pregnant_config is None

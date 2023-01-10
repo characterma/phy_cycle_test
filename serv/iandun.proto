@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package pyserver;
+
+option java_multiple_files = true;
+option java_package = "org.jpdna.grpchello";
+option java_outer_classname = "PyServerProto";
+
+// 创建服务
+service Greeter {
+    rpc GenderResults(GenderRequest) returns (GenderReply) {}//性别
+    rpc PhyResults(PhyRequest) returns (PhyReply) {}//生理周期
+    rpc PhySiologicalCycleStage(PhySiologicalCycleStageRequest) returns (PhySiologicalCycleStageReply) {}//生理周期整个周期
+    rpc QuickResults(QuickRequest) returns (QuickReply) {}//胎动
+    rpc PhySiologicalCyclePersonalModel(PhySiologicalCyclePersonalModelRequest) returns (PhySiologicalCyclePersonalModelReply) {}//生理个人模型训练
+    rpc PhySiologicalCycleCommonModel(PhySiologicalCycleCommonModelRequest) returns (PhySiologicalCycleCommonModelReply) {}//生理周期通用模型训练
+}
+
+// 创建服务
+message GenderRequest {//性别
+    string ids = 1;
+    string date = 2;
+}
+
+message PhyRequest {//生理周期
+    string ids = 1;
+    string date = 2;
+    string men_start_latest = 3;//末次月经
+    string men_keep = 4;//月经持续时间
+    string men_cycle = 5;//生理期持续周期
+}
+
+message PhySiologicalCycleStageRequest {
+    string ids = 1;
+    string date = 2;
+}
+message PhySiologicalCycleCommonModelRequest{
+    string uid = 1;
+    string update = 2;//0 不更新 1更新
+}
+message PhySiologicalCycleCommonModelReply{
+    string message = 1;//-1训练失败 0 已经存在 1 训练完成 2 更新完成
+}
+message PhySiologicalCyclePersonalModelRequest{
+    string uid = 1;
+    string update = 2;//0 不更新 1更新
+}
+message PhySiologicalCyclePersonalModelReply{
+    string message = 1;//-1训练失败 0 已经存在 1 训练完成 2 更新完成
+}
+message GenderReply {//性别
+    string message = 1;//1男，2女
+}
+
+message PhyReply {//生理周期
+    string message = 1;//-1计算失败,0月经,1卵泡,2排卵,3黄体,4排卵日
+}
+
+message PhySiologicalCycleStageReply {//新版生理周期预测
+    //string menstrual_period =1;//月经期
+    //string safe_period =2;//安全期
+    //string ovulation_period = 3;//排卵期
+    //string ovulation_day = 4;//排卵日
+    //string luteal_phase = 5;//安全期-黄体期
+    string message = 1;//json字符串
+}
+
+message QuickRequest {//胎动
+    string hrs = 1;
+    string date = 2;
+}
+
+message QuickReply {//胎动
+    string message = 1;
+}
